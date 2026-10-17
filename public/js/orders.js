@@ -63,7 +63,7 @@
             <div><span>Delivering to</span><strong>${escapeHtml(order.customerName)}<br>${escapeHtml(order.address)}<br>${escapeHtml(order.phone)}</strong></div>
           </div>
           <div class="confirmation-items">
-            ${order.items.map((item) => `<div class="confirmation-item"><img src="${escapeHtml(item.imageUrl)}" alt=""><span>${escapeHtml(item.name)} × ${item.quantity}</span><strong>${money(item.priceCents * item.quantity)}</strong></div>`).join('')}
+            ${order.items.map((item) => `<div class="confirmation-item"><img src="${escapeHtml(window.Store.imageFor(item))}" alt="${escapeHtml(item.name)}"><span>${escapeHtml(item.name)} × ${item.quantity}</span><strong>${money(item.priceCents * item.quantity)}</strong></div>`).join('')}
           </div>
           <div class="summary-line summary-total"><span>Total</span><strong>${money(order.totalCents)}</strong></div>
         </section>
