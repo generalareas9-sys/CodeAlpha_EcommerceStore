@@ -69,7 +69,7 @@
       } catch (error) {
         window.Store.showToast(`You are signed in, but your saved bag could not be synced: ${error.message}`, true);
       }
-      sessionStorage.setItem('small-hours-login-notice', loginForm ? 'Welcome back.' : 'Your account is ready. Welcome to Small Hours.');
+      sessionStorage.setItem('small-hours-login-notice', loginForm ? 'Welcome back to ShopNova.' : 'Your account is ready. Welcome to ShopNova.');
       window.location.href = window.Store.safeRedirect();
     } catch (error) {
       message.textContent = error.message;
