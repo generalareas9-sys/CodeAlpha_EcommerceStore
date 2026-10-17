@@ -21,7 +21,7 @@
             <a class="order-card" href="/confirmation.html?id=${order.id}">
               <span class="order-card-date">Order #${order.id} · ${new Date(`${order.createdAt.replace(' ', 'T')}Z`).toLocaleDateString()}</span>
               <strong>${money(order.totalCents)}</strong>
-              <span class="status-pill">${escapeHtml(order.status)}</span>
+              <span class="status-pill status-${['pending', 'shipped', 'delivered'].includes(String(order.status).toLowerCase()) ? String(order.status).toLowerCase() : 'other'}">${escapeHtml(order.status)}</span>
               <span aria-hidden="true">→</span>
             </a>
           `).join('')}
@@ -49,7 +49,7 @@
       const result = await request(`/api/orders/${encodeURIComponent(id)}`);
       const order = result.order;
       confirmationContainer.innerHTML = `
-        <nav class="checkout-steps" aria-label="Checkout progress"><span class="step-done">01 <b>Bag</b></span><i></i><span class="step-done">02 <b>Delivery</b></span><i></i><span class="step-active" aria-current="step">03 <b>Complete</b></span></nav>
+        <nav class="checkout-steps" aria-label="Checkout progress"><span class="step-done">01 <b>Cart</b></span><i></i><span class="step-done">02 <b>Details</b></span><i></i><span class="step-active" aria-current="step">03 <b>Confirm</b></span></nav>
         <section class="confirmation-head">
           <div class="success-icon" aria-hidden="true">✓</div>
           <p class="eyebrow">It’s on its way to being yours</p>
@@ -67,7 +67,7 @@
           </div>
           <div class="summary-line summary-total"><span>Total</span><strong>${money(order.totalCents)}</strong></div>
         </section>
-        <a class="button button-dark" href="/orders.html">View all orders</a>
+        <a class="button button-primary" href="/orders.html">View all orders</a>
       `;
     } catch (error) {
       if (error.status === 401) {
