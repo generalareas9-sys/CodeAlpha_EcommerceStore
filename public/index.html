@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Thoughtful everyday goods, chosen to make life a little better.">
-    <title>Small Hours — thoughtful things for every day</title>
+    <meta name="description" content="Shop great finds for home, tech, accessories and everyday life at ShopNova.">
+    <title>ShopNova — Find your next favorite</title>
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/app.js" defer></script>
@@ -13,43 +13,67 @@
   <body data-page="home">
     <div id="site-header"></div>
     <main>
-      <section class="hero wrap">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-dot"></span> The everyday edit · 2026</p>
-          <h1>Good things for good living.</h1>
-          <p>Good design. Better living. Discover considered essentials made to bring a little more joy to your daily rituals.</p>
-          <a class="button button-dark" href="#shop">Discover the collection <span aria-hidden="true">↗</span></a>
-          <div class="hero-proof"><span aria-hidden="true">✳</span> Thoughtfully chosen, made to last</div>
+      <section class="hero-carousel" aria-label="ShopNova highlights">
+        <div class="hero-slides" id="hero-slides">
+          <article class="hero-slide hero-slide-violet active">
+            <div class="hero-copy">
+              <p class="eyebrow">The good stuff starts here</p>
+              <h1>Big finds.<br><span>Better prices.</span></h1>
+              <p>Everyday essentials and little upgrades that make life more fun.</p>
+              <a class="button button-cta" href="#featured">Shop now <span aria-hidden="true">→</span></a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1400&q=85" alt="Bright, modern living space">
+            <span class="hero-sticker">GOOD DEALS<br>GOOD MOOD</span>
+          </article>
+          <article class="hero-slide hero-slide-orange">
+            <div class="hero-copy">
+              <p class="eyebrow">Tech that moves with you</p>
+              <h1>Turn up<br><span>your everyday.</span></h1>
+              <p>Fresh gear, great sound and useful tech picks worth getting excited about.</p>
+              <a class="button button-cta" href="/?category=Electronics#featured">Shop electronics <span aria-hidden="true">→</span></a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=85" alt="Colorful wireless headphones">
+            <span class="hero-sticker hero-sticker-orange">FIND YOUR<br>FREQUENCY</span>
+          </article>
+          <article class="hero-slide hero-slide-green">
+            <div class="hero-copy">
+              <p class="eyebrow">Small upgrades, big joy</p>
+              <h1>Make room<br><span>for more fun.</span></h1>
+              <p>Shop colorful home and lifestyle finds that brighten up your space.</p>
+              <a class="button button-cta" href="/?category=Home#featured">Shop home <span aria-hidden="true">→</span></a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1400&q=85" alt="Modern lamp in a cozy room">
+            <span class="hero-sticker hero-sticker-green">YOUR SPACE.<br>YOUR STYLE.</span>
+          </article>
         </div>
-        <div class="hero-visual">
-          <div class="hero-art" aria-label="A collection of everyday goods">
-            <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1200&q=85" alt="Warm, sunlit home interior">
-            <span class="hero-index">THE SMALL HOURS EDIT</span>
-          </div>
-          <div class="hero-note"><span>MADE FOR THE MOMENTS IN BETWEEN</span><strong>Objects for the art of living.</strong></div>
+        <div class="hero-controls" aria-label="Choose promotion">
+          <button type="button" class="hero-dot active" aria-label="Show promotion 1" aria-pressed="true"></button>
+          <button type="button" class="hero-dot" aria-label="Show promotion 2" aria-pressed="false"></button>
+          <button type="button" class="hero-dot" aria-label="Show promotion 3" aria-pressed="false"></button>
         </div>
       </section>
 
-      <section class="shop-section wrap" id="shop">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">A good place to start</p>
-            <h2>Shop the collection</h2>
-          </div>
-          <p class="muted" id="product-count">Thoughtful finds for your everyday.</p>
+      <section class="category-section wrap" aria-labelledby="category-title">
+        <div class="section-heading"><div><p class="eyebrow">Pick your vibe</p><h2 id="category-title">Shop by category</h2></div></div>
+        <div class="category-tiles">
+          <a class="category-tile tile-home" href="/?category=Home#featured"><span>🏠</span><strong>Home</strong><small>Make yourself comfy</small></a>
+          <a class="category-tile tile-electronics" href="/?category=Electronics#featured"><span>🎧</span><strong>Electronics</strong><small>Gear up &amp; tune in</small></a>
+          <a class="category-tile tile-accessories" href="/?category=Accessories#featured"><span>👜</span><strong>Accessories</strong><small>Bring your best look</small></a>
+          <a class="category-tile tile-lifestyle" href="/?category=Lifestyle#featured"><span>💧</span><strong>Lifestyle</strong><small>Everyday, upgraded</small></a>
+          <a class="category-tile tile-stationery" href="/?category=Stationery#featured"><span>✏️</span><strong>Stationery</strong><small>Ideas start here</small></a>
         </div>
-        <div class="category-chips" id="category-chips" aria-label="Shop by category"></div>
+      </section>
+
+      <section class="shop-section wrap" id="featured">
+        <div class="section-heading">
+          <div><p class="eyebrow">Good picks, right this way</p><h2>Featured products</h2></div>
+          <p class="muted" id="product-count">Find something you’ll love.</p>
+        </div>
+        <div class="category-chips" id="category-chips" aria-label="Filter by category"></div>
         <form class="filters" id="product-filters">
-          <label class="search-field">
-            <span class="sr-only">Search products</span>
-            <span class="search-icon" aria-hidden="true"></span>
-            <input id="product-search" type="search" placeholder="What are you looking for?">
-          </label>
-          <label>
-            <span class="sr-only">Filter by category</span>
-            <select id="category-filter"><option value="">All products</option></select>
-          </label>
-          <button class="button button-dark filter-submit" type="submit">Search</button>
+          <label class="search-field"><span class="sr-only">Search products</span><input id="product-search" type="search" placeholder="What are you looking for?"></label>
+          <label><span class="sr-only">Filter by category</span><select id="category-filter"><option value="">All products</option></select></label>
+          <button class="button button-primary filter-submit" type="submit">Search</button>
         </form>
         <div class="product-grid" id="product-grid" aria-live="polite">
           <div class="skeleton-card" aria-hidden="true"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div>
@@ -58,19 +82,22 @@
           <div class="skeleton-card" aria-hidden="true"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div>
         </div>
       </section>
-      <section class="store-benefits wrap" aria-label="Shopping benefits">
-        <article class="benefit-card">
-          <span class="benefit-icon" aria-hidden="true">↺</span>
-          <div><h2>Free, easy returns</h2><p>Changed your mind? Send it back within 30 days.</p></div>
-        </article>
-        <article class="benefit-card">
-          <span class="benefit-icon" aria-hidden="true">♡</span>
-          <div><h2>Secure checkout</h2><p>Your details are handled with care, always.</p></div>
-        </article>
-        <article class="benefit-card">
-          <span class="benefit-icon" aria-hidden="true">⌁</span>
-          <div><h2>Fast delivery</h2><p>Thoughtful finds, on their way to you quickly.</p></div>
-        </article>
+
+      <section class="product-shelf wrap" id="best-sellers">
+        <div class="section-heading"><div><p class="eyebrow">The crowd favorites</p><h2>Best sellers</h2></div><a class="text-link" href="#featured">Shop all products →</a></div>
+        <div class="product-grid shelf-grid" id="best-seller-grid" aria-live="polite"><div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div></div><div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div></div><div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div></div><div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div></div></div>
+      </section>
+
+      <section class="deal-banner wrap" id="deal-of-the-day">
+        <div><p class="eyebrow">Deal of the day</p><h2>Today’s little pick-me-up</h2><p>Shop a fresh selection of everyday favorites before the clock runs out.</p></div>
+        <div class="deal-clock-wrap"><span>Next deal refreshes in</span><strong class="deal-clock" id="deal-clock">23:59:59</strong><a class="button button-cta" href="#featured">Shop deals</a></div>
+      </section>
+
+      <section class="trust-row wrap" id="trust" aria-label="Why shop with ShopNova">
+        <article><span>🚚</span><div><strong>Free delivery</strong><small>On orders over $50</small></div></article>
+        <article><span>🔒</span><div><strong>Secure payment</strong><small>Checkout with confidence</small></div></article>
+        <article><span>↩️</span><div><strong>Easy returns</strong><small>30 days to decide</small></div></article>
+        <article><span>💬</span><div><strong>Here to help</strong><small>Support, every day</small></div></article>
       </section>
     </main>
     <div id="site-footer"></div>
