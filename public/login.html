@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in — Small Hours</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+  </head>
+  <body data-page="login">
+    <div id="site-header"></div>
+    <main class="auth-layout wrap">
+      <section class="auth-card">
+        <p class="eyebrow">Welcome back</p><h1>Good to see you.</h1>
+        <p class="muted">Log in to pick up where you left off.</p>
+        <form id="login-form" class="form-stack">
+          <label>Email address<input type="email" name="email" autocomplete="email" required maxlength="254"></label>
+          <label>Password<input type="password" name="password" autocomplete="current-password" required maxlength="72"></label>
+          <p class="form-message" id="form-message" role="alert"></p>
+          <button class="button button-dark" type="submit">Log in</button>
+        </form>
+        <p class="form-switch">New around here? <a href="/register.html">Create an account</a></p>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
