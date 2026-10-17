@@ -1,6 +1,6 @@
-# Small Hours — CodeAlpha E-commerce Store
+# ShopNova — CodeAlpha E-commerce Store
 
-A responsive, beginner-friendly full-stack store built for the CodeAlpha Full Stack Development Internship (Task 1). The frontend uses plain HTML, CSS, and JavaScript. The backend uses Node.js and Express, and SQLite stores accounts, products, carts, and orders.
+A responsive, beginner-friendly full-stack ShopNova store built for the CodeAlpha Full Stack Development Internship (Task 1). The frontend uses plain HTML, CSS, and JavaScript. The backend uses Node.js and Express, and SQLite stores accounts, products, carts, and orders.
 
 ## Features
 
@@ -40,6 +40,11 @@ CodeAlpha_Ecommerce/
 │   ├── checkout.html
 │   ├── orders.html
 │   └── confirmation.html
+├── screenshots/               # Storefront screenshots shown below
+│   ├── home.png
+│   ├── product-details.png
+│   ├── cart.png
+│   └── orders.png
 ├── src/
 │   ├── db/
 │   │   ├── database.js        # Creates SQLite tables and opens the database
@@ -132,24 +137,30 @@ This is an internship learning project, not a payment service. Checkout records 
 
 ## Screenshots
 
-Add screenshots here after running the app. Suggested captures:
+### Home
 
-- `screenshots/homepage.png` — product search and category filters
-- `screenshots/product-detail.png` — product information and quantity selector
-- `screenshots/cart-checkout.png` — cart and checkout
-- `screenshots/orders.png` — order history
+![ShopNova home page](screenshots/home.png)
+
+### Product details
+
+![ShopNova product details page](screenshots/product-details.png)
+
+### Cart
+
+![ShopNova cart page](screenshots/cart.png)
+
+### Orders
+
+![ShopNova order history page](screenshots/orders.png)
 
 ## Push to GitHub as `CodeAlpha_EcommerceStore`
 
-Create an empty GitHub repository named **CodeAlpha_EcommerceStore**. From the project folder, run:
+This project is already connected to `https://github.com/generalareas9-sys/CodeAlpha_EcommerceStore` and uses the `master` branch. After making changes, push the current branch with:
 
 ```powershell
-git init
 git add .
-git commit -m "Build CodeAlpha e-commerce store"
-git branch -M main
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/CodeAlpha_EcommerceStore.git
-git push -u origin main
+git commit -m "Update ShopNova storefront"
+git push origin master
 ```
 
-Replace `YOUR_GITHUB_USERNAME` with your GitHub username. `.gitignore` excludes `.env`, `node_modules/`, generated SQLite files, and other local build output. Check `git status` before pushing to confirm no secrets are staged.
+`.gitignore` excludes `.env`, `node_modules/`, generated SQLite files, and other local build output. Check `git status` before pushing to confirm no secrets are staged. GitHub repository description and topics can be managed from the repository’s **About** section.
