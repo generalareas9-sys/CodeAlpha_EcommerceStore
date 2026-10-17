@@ -19,7 +19,7 @@
 
   function renderCart(items) {
     if (!items.length) {
-      cartContent.innerHTML = '<div class="empty-state"><h2>Your bag is taking a little break.</h2><p>There is plenty to discover in the collection.</p><a class="button button-dark" href="/">Explore the shop</a></div>';
+      cartContent.innerHTML = '<div class="empty-state"><h2>Your cart is empty.</h2><p>There is plenty to discover in the collection.</p><a class="button button-dark" href="/">Explore the shop</a></div>';
       return;
     }
 
