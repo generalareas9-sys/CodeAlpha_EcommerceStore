@@ -28,10 +28,9 @@
         <div class="cart-items">
           ${items.map((item) => `
             <article class="cart-row" data-product-id="${item.id}">
-              <a class="cart-thumb" href="/product.html?id=${item.id}"><img src="${escapeHtml(item.imageUrl)}" alt="${escapeHtml(item.name)}"></a>
+              <a class="cart-thumb" href="/product.html?id=${item.id}"><img src="${escapeHtml(window.Store.imageFor(item))}" alt="${escapeHtml(item.name)}"></a>
               <div class="cart-item-copy">
-                <h2><a href="/product.html?id=${item.id}">${escapeHtml(item.name)}</a></h2>
-                <p>${money(item.priceCents)}</p>
+                <div class="cart-product-heading"><h2><a href="/product.html?id=${item.id}">${escapeHtml(item.name)}</a></h2><strong>${money(item.priceCents)}</strong></div>
                 <div class="quantity-control">
                   <label class="sr-only" for="quantity-${item.id}">Quantity for ${escapeHtml(item.name)}</label>
                   <button type="button" data-action="decrease" aria-label="Decrease quantity">−</button>
@@ -40,7 +39,7 @@
                 </div>
               </div>
               <strong class="cart-line-total">${money(item.priceCents * item.quantity)}</strong>
-              <button type="button" class="remove-button" data-action="remove">Remove</button>
+              <button type="button" class="remove-button" data-action="remove"><span aria-hidden="true">×</span> Remove</button>
             </article>
           `).join('')}
         </div>
