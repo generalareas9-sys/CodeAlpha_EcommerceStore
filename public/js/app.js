@@ -1,7 +1,16 @@
 (() => {
   const guestCartKey = 'small-hours-cart';
   const imageOverrides = {
-    'Canvas Market Tote': 'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=900&q=85',
+    'Everyday Backpack': 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85',
+    'Classic Ceramic Mug': 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85',
+    'Wireless Headphones': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85',
+    'Linen Table Lamp': 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85',
+    'Canvas Market Tote': 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=85',
+    'Insulated Water Bottle': 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=85',
+    'Desk Notebook Set': 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=900&q=85',
+    'Soft Cotton Throw': 'https://images.unsplash.com/photo-1600369671236-e74521d4b6ad?auto=format&fit=crop&w=900&q=85',
+    'Everyday Sunglasses': 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85',
+    'Compact Bluetooth Speaker': 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=85',
   };
   let currentUser = null;
   let toastTimer;
@@ -141,7 +150,7 @@
     document.querySelectorAll('[data-cart-count]').forEach((element) => {
       const previousCount = Number(element.textContent) || 0;
       element.textContent = String(count);
-      element.setAttribute('aria-label', `${count} items in your bag`);
+      element.setAttribute('aria-label', `${count} items in your cart`);
       if (count > previousCount) {
         element.classList.remove('badge-bounce');
         void element.offsetWidth;
@@ -154,32 +163,44 @@
     const header = document.querySelector('#site-header');
     if (header) {
       header.innerHTML = `
-        <div class="announcement">Thoughtfully chosen goods for everyday living</div>
+        <div class="announcement"><span>FREE SHIPPING OVER $50</span><i aria-hidden="true">•</i> Use code <strong>WELCOME10</strong> at checkout</div>
         <header class="site-header">
           <div class="nav-inner wrap">
-            <a class="brand" href="/" aria-label="Small Hours home">small<span>hours</span><i>.</i></a>
+            <a class="brand" href="/" aria-label="ShopNova home"><span class="brand-mark">S</span>Shop<span class="brand-accent">Nova</span></a>
             <form class="header-search" id="header-search" role="search">
-              <span class="search-icon" aria-hidden="true"></span>
+              <label class="sr-only" for="header-category">Product category</label>
+              <select id="header-category" aria-label="Choose a product category"><option value="">All categories</option></select>
               <label class="sr-only" for="header-search-input">Search products</label>
-              <input id="header-search-input" type="search" placeholder="Search products, categories…" autocomplete="off">
+              <input id="header-search-input" type="search" placeholder="Search for products, brands and more" autocomplete="off">
+              <button type="submit" aria-label="Search"><span aria-hidden="true">⌕</span></button>
             </form>
             <nav class="main-nav" aria-label="Main navigation">
-              <a href="/#shop">Shop</a>
+              <a href="/#featured">Shop</a>
               <a class="account-link" href="/login.html">Log in</a>
               <a class="orders-link hidden" href="/orders.html">My orders</a>
               <button class="logout-link hidden" type="button">Log out</button>
               <a class="bag-link" href="/cart.html">
                 <svg class="bag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
-                <span>Bag</span><span class="bag-count" data-cart-count aria-label="0 items in your bag">0</span>
+                <span>Cart</span><span class="bag-count" data-cart-count aria-label="0 items in your cart">0</span>
               </a>
             </nav>
             <a class="mobile-bag-link" href="/cart.html" aria-label="Shopping bag">
               <svg class="bag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
-              <span class="bag-count" data-cart-count aria-label="0 items in your bag">0</span>
+              <span class="bag-count" data-cart-count aria-label="0 items in your cart">0</span>
             </a>
             <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
           </div>
         </header>
+        <nav class="category-strip" aria-label="Shop categories">
+          <div class="wrap category-strip-inner">
+            <a href="/#featured">✨ <span>All deals</span></a>
+            <a href="/?category=Home#featured">🏠 <span>Home</span></a>
+            <a href="/?category=Electronics#featured">🎧 <span>Electronics</span></a>
+            <a href="/?category=Accessories#featured">👜 <span>Accessories</span></a>
+            <a href="/?category=Lifestyle#featured">💧 <span>Lifestyle</span></a>
+            <a href="/?category=Stationery#featured">✏️ <span>Stationery</span></a>
+          </div>
+        </nav>
       `;
     }
 
@@ -190,14 +211,22 @@
           <div class="wrap footer-inner">
             <div class="footer-top">
               <div class="footer-brand">
-                <a class="brand brand-light" href="/">small<span>hours</span><i>.</i></a>
-                <p>Thoughtful things for everyday living.</p>
+                <a class="brand brand-light" href="/"><span class="brand-mark">S</span>Shop<span class="brand-accent">Nova</span></a>
+                <p>Good finds. Great prices. Every day.</p>
+                <h2 class="payment-heading">Secure payments</h2>
+                <div class="payment-icons" aria-label="Accepted payment methods"><span>VISA</span><span>Mastercard</span><span>PayPal</span></div>
               </div>
-              <div class="footer-column"><h2>Shop</h2><a href="/#shop">All products</a><a href="/#shop">Shop by category</a><a href="/cart.html">Your cart</a></div>
+              <div class="footer-column"><h2>Shop</h2><a href="/#featured">All products</a><a href="/?category=Electronics#featured">Electronics</a><a href="/?category=Home#featured">Home &amp; living</a><a href="/cart.html">Your cart</a></div>
               <div class="footer-column"><h2>Your account</h2><a href="/login.html">Log in</a><a href="/register.html">Create an account</a><a href="/orders.html">My orders</a></div>
-              <div class="footer-column"><h2>We’re here to help</h2><a href="mailto:hello@smallhours.store">hello@smallhours.store</a><span>Monday–Friday, 9am–5pm</span></div>
+              <div class="footer-column"><h2>Help &amp; support</h2><a href="mailto:hello@shopnova.example">hello@shopnova.example</a><a href="/#trust">Delivery &amp; returns</a><span>Here for you, every day</span></div>
+              <form class="newsletter-form" id="newsletter-form">
+                <label for="newsletter-email">Get the good stuff first</label>
+                <p>Deals and new finds, straight to your inbox.</p>
+                <div><input id="newsletter-email" type="email" placeholder="Email address" required><button type="submit">Join</button></div>
+                <small id="newsletter-message" role="status"></small>
+              </form>
             </div>
-            <div class="footer-bottom"><small>© ${new Date().getFullYear()} Small Hours. All rights reserved.</small><small>Thoughtfully made for the everyday.</small></div>
+            <div class="footer-bottom"><small>© ${new Date().getFullYear()} ShopNova. All rights reserved.</small><small>Great shopping starts here.</small></div>
           </div>
         </footer>
       `;
@@ -225,15 +254,24 @@
     header?.querySelector('#header-search')?.addEventListener('submit', (event) => {
       event.preventDefault();
       const query = header.querySelector('#header-search-input').value.trim();
-      if (!query) return;
+      const category = header.querySelector('#header-category').value;
       if (window.location.pathname === '/' && document.querySelector('#product-filters')) {
         const localSearch = document.querySelector('#product-search');
         localSearch.value = query;
+        document.querySelector('#category-filter').value = category;
         document.querySelector('#product-filters').requestSubmit();
         document.querySelector('#shop')?.scrollIntoView({ behavior: 'smooth' });
       } else {
-        window.location.href = `/?search=${encodeURIComponent(query)}#shop`;
+        const parameters = new URLSearchParams();
+        if (query) parameters.set('search', query);
+        if (category) parameters.set('category', category);
+        window.location.href = `/?${parameters}#featured`;
       }
+    });
+
+    footer?.querySelector('#newsletter-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      footer.querySelector('#newsletter-message').textContent = 'Newsletter signups are not available yet.';
     });
   }
 
@@ -306,7 +344,7 @@
     const image = event.target;
     if (image instanceof HTMLImageElement && !image.dataset.fallbackApplied) {
       image.dataset.fallbackApplied = 'true';
-      image.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"%3E%3Crect width="640" height="640" fill="%23f0f2ef"/%3E%3Cpath d="M220 385h200l-20-155H240z" fill="%23dce3dd"/%3E%3Ccircle cx="320" cy="270" r="35" fill="%23cbd5cd"/%3E%3Ctext x="320" y="470" text-anchor="middle" fill="%23707873" font-family="Arial" font-size="24"%3ESmall Hours%3C/text%3E%3C/svg%3E';
+      image.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"%3E%3Crect width="640" height="640" fill="%23efeff7"/%3E%3Cpath d="M220 385h200l-20-155H240z" fill="%23d8d7f5"/%3E%3Ccircle cx="320" cy="270" r="35" fill="%23b6b4eb"/%3E%3Ctext x="320" y="470" text-anchor="middle" fill="%234f46e5" font-family="Arial" font-size="28" font-weight="700"%3EShopNova%3C/text%3E%3C/svg%3E';
     }
   }, true);
 
@@ -331,6 +369,20 @@
       document.querySelector('.logout-link')?.classList.remove('hidden');
     }
     await updateCartCount();
+    try {
+      const result = await request('/api/products/categories');
+      const categorySelect = document.querySelector('#header-category');
+      result.categories.forEach((category) => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categorySelect?.append(option);
+      });
+      const selectedCategory = new URLSearchParams(window.location.search).get('category');
+      if (selectedCategory && categorySelect) categorySelect.value = selectedCategory;
+    } catch (error) {
+      console.warn('Product categories could not be loaded for search.', error);
+    }
     const loginNotice = sessionStorage.getItem('small-hours-login-notice');
     if (loginNotice) {
       sessionStorage.removeItem('small-hours-login-notice');
