@@ -153,14 +153,4 @@ This is an internship learning project, not a payment service. Checkout records 
 
 ![ShopNova order history page](screenshots/orders.png)
 
-## Push to GitHub as `CodeAlpha_EcommerceStore`
-
-This project is already connected to `https://github.com/generalareas9-sys/CodeAlpha_EcommerceStore` and uses the `master` branch. After making changes, push the current branch with:
-
-```powershell
-git add .
-git commit -m "Update ShopNova storefront"
-git push origin master
-```
-
-`.gitignore` excludes `.env`, `node_modules/`, generated SQLite files, and other local build output. Check `git status` before pushing to confirm no secrets are staged. GitHub repository description and topics can be managed from the repository’s **About** section.
+`.gitignore` excludes `.env`, `node_modules/`, generated SQLite files, and other local build output. Check `git status` before sharing changes to confirm no secrets are staged.
