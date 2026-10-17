@@ -11,8 +11,9 @@
   <body data-page="checkout">
     <div id="site-header"></div>
     <main class="wrap page-main">
+      <nav class="checkout-steps" aria-label="Checkout progress"><span class="step-done">01 <b>Bag</b></span><i></i><span class="step-active" aria-current="step">02 <b>Delivery</b></span><i></i><span>03 <b>Confirmation</b></span></nav>
       <p class="eyebrow">Almost yours</p><h1>Checkout</h1>
-      <div id="checkout-content" aria-live="polite"><p class="loading">Getting checkout ready…</p></div>
+      <div id="checkout-content" aria-live="polite"><div class="cart-skeleton skeleton"></div></div>
     </main>
     <div id="site-footer"></div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
