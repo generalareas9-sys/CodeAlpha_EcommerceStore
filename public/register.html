@@ -15,9 +15,9 @@
         <p class="eyebrow">Make yourself at home</p><h1>Join the good things.</h1>
         <p class="muted">Create an account to save your bag and see your orders.</p>
         <form id="register-form" class="form-stack">
-          <label>Your name<input type="text" name="name" autocomplete="name" required minlength="2" maxlength="80"></label>
-          <label>Email address<input type="email" name="email" autocomplete="email" required maxlength="254"></label>
-          <label>Password<input type="password" name="password" autocomplete="new-password" required minlength="8" maxlength="72"><small>Use at least 8 characters.</small></label>
+          <label>Your name<input type="text" name="name" autocomplete="name" required minlength="2" maxlength="80" placeholder="Your name"></label>
+          <label>Email address<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
+          <label>Password<span class="password-field"><input type="password" name="password" autocomplete="new-password" required minlength="8" maxlength="72" placeholder="At least 8 characters"></span><small>Use at least 8 characters.</small></label>
           <p class="form-message" id="form-message" role="alert"></p>
           <button class="button button-dark" type="submit">Create account</button>
         </form>
