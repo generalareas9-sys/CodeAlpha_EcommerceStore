@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Log in — Small Hours</title>
+    <title>Log in — ShopNova</title>
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/app.js" defer></script>
     <script src="/js/auth.js" defer></script>
@@ -11,9 +11,15 @@
   <body data-page="login">
     <div id="site-header"></div>
     <main class="auth-layout wrap">
+      <aside class="auth-promo-panel">
+        <a class="brand" href="/"><span class="brand-mark">S</span>Shop<span class="brand-accent">Nova</span></a>
+        <h2>Your next favorite is waiting.</h2>
+        <p>Sign in to keep your cart close and catch the latest good deals.</p>
+        <span class="auth-promo-tag">GOOD FINDS. GREAT PRICES.</span>
+      </aside>
       <section class="auth-card">
-        <p class="eyebrow">Welcome back</p><h1>Good to see you.</h1>
-        <p class="muted">Log in to pick up where you left off.</p>
+        <p class="eyebrow">Welcome back</p><h1>Log in to ShopNova</h1>
+        <p class="muted">Pick up where you left off.</p>
         <form id="login-form" class="form-stack">
           <label>Email address<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
           <label>Password<span class="password-field"><input type="password" name="password" autocomplete="current-password" required maxlength="72" placeholder="Your password"></span></label>
