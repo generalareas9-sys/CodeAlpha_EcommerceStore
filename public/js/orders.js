@@ -49,7 +49,9 @@
       const result = await request(`/api/orders/${encodeURIComponent(id)}`);
       const order = result.order;
       confirmationContainer.innerHTML = `
+        <nav class="checkout-steps" aria-label="Checkout progress"><span class="step-done">01 <b>Bag</b></span><i></i><span class="step-done">02 <b>Delivery</b></span><i></i><span class="step-active" aria-current="step">03 <b>Complete</b></span></nav>
         <section class="confirmation-head">
+          <div class="success-icon" aria-hidden="true">✓</div>
           <p class="eyebrow">It’s on its way to being yours</p>
           <h1>Thank you for your order.</h1>
           <p>Order #${order.id} has been placed. We’ve saved the details below for you.</p>
