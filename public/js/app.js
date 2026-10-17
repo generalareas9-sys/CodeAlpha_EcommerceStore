@@ -1,5 +1,8 @@
 (() => {
   const guestCartKey = 'small-hours-cart';
+  const imageOverrides = {
+    'Canvas Market Tote': 'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=900&q=85',
+  };
   let currentUser = null;
   let toastTimer;
   let resolveReady;
@@ -43,6 +46,10 @@
       style: 'currency',
       currency: 'USD',
     }).format(cents / 100);
+  }
+
+  function imageFor(product) {
+    return imageOverrides[product.name] || product.imageUrl;
   }
 
   function escapeHtml(value) {
@@ -132,8 +139,14 @@
     }
     const count = cartItems.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
     document.querySelectorAll('[data-cart-count]').forEach((element) => {
+      const previousCount = Number(element.textContent) || 0;
       element.textContent = String(count);
       element.setAttribute('aria-label', `${count} items in your bag`);
+      if (count > previousCount) {
+        element.classList.remove('badge-bounce');
+        void element.offsetWidth;
+        element.classList.add('badge-bounce');
+      }
     });
   }
 
@@ -175,9 +188,16 @@
       footer.innerHTML = `
         <footer class="site-footer">
           <div class="wrap footer-inner">
-            <a class="brand brand-light" href="/">small<span>hours</span><i>.</i></a>
-            <p>Thoughtful things for everyday living.</p>
-            <small>© ${new Date().getFullYear()} Small Hours. Made for the everyday.</small>
+            <div class="footer-top">
+              <div class="footer-brand">
+                <a class="brand brand-light" href="/">small<span>hours</span><i>.</i></a>
+                <p>Thoughtful things for everyday living.</p>
+              </div>
+              <div class="footer-column"><h2>Shop</h2><a href="/#shop">All products</a><a href="/#shop">Shop by category</a><a href="/cart.html">Your cart</a></div>
+              <div class="footer-column"><h2>Your account</h2><a href="/login.html">Log in</a><a href="/register.html">Create an account</a><a href="/orders.html">My orders</a></div>
+              <div class="footer-column"><h2>We’re here to help</h2><a href="mailto:hello@smallhours.store">hello@smallhours.store</a><span>Monday–Friday, 9am–5pm</span></div>
+            </div>
+            <div class="footer-bottom"><small>© ${new Date().getFullYear()} Small Hours. All rights reserved.</small><small>Thoughtfully made for the everyday.</small></div>
           </div>
         </footer>
       `;
@@ -231,13 +251,44 @@
     if (guestItems.length !== savedItems.length) {
       showToast('Some invalid saved bag items could not be synced.', true);
     }
-    if (!guestItems.length) return;
-    const result = await request('/api/cart/sync', {
-      method: 'POST',
-      body: JSON.stringify({ items: guestItems }),
+    if (!guestItems.length) {
+      await updateCartCount();
+      return;
+    }
+
+    const accountCart = await request('/api/cart');
+    const merged = new Map(accountCart.items.map((item) => [
+      Number(item.id),
+      { productId: Number(item.id), quantity: Number(item.quantity), stock: Number(item.stock) },
+    ]));
+
+    for (const item of guestItems) {
+      const accountItem = merged.get(item.productId);
+      let stock = accountItem ? accountItem.stock : 0;
+      if (!accountItem) {
+        try {
+          const result = await request(`/api/products/${item.productId}`);
+          stock = Number(result.product.stock);
+        } catch (error) {
+          if (error.status === 404) continue;
+          throw error;
+        }
+      }
+      merged.set(item.productId, {
+        productId: item.productId,
+        quantity: Math.min(stock, Math.max(item.quantity, accountItem?.quantity || 0)),
+      });
+    }
+
+    const result = await request('/api/cart', {
+      method: 'PUT',
+      body: JSON.stringify({
+        items: [...merged.values()].map(({ productId, quantity }) => ({ productId, quantity })),
+      }),
     });
     localStorage.removeItem(guestCartKey);
     await updateCartCount(result.items);
+    showToast('Your bag is up to date.');
   }
 
   function safeRedirect() {
@@ -258,6 +309,10 @@
       image.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"%3E%3Crect width="640" height="640" fill="%23f0f2ef"/%3E%3Cpath d="M220 385h200l-20-155H240z" fill="%23dce3dd"/%3E%3Ccircle cx="320" cy="270" r="35" fill="%23cbd5cd"/%3E%3Ctext x="320" y="470" text-anchor="middle" fill="%23707873" font-family="Arial" font-size="24"%3ESmall Hours%3C/text%3E%3C/svg%3E';
     }
   }, true);
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === guestCartKey) updateCartCount();
+  });
 
   async function initialize() {
     renderShell();
@@ -296,6 +351,7 @@
     syncGuestCart,
     safeRedirect,
     money,
+    imageFor,
     escapeHtml,
     showToast,
     ready,
