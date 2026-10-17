@@ -15,42 +15,53 @@
     <main>
       <section class="hero wrap">
         <div class="hero-copy">
-          <p class="eyebrow">Little things, well chosen</p>
-          <h1>Make room for<br><em>the good stuff.</em></h1>
-          <p>Considered essentials for your home, your routine, and all the moments in between.</p>
-          <a class="button button-dark" href="#shop">Explore the collection <span aria-hidden="true">↘</span></a>
+          <p class="eyebrow"><span class="eyebrow-dot"></span> The everyday edit · 2026</p>
+          <h1>Everyday,<br><em>elevated.</em></h1>
+          <p>Good design. Better living. Discover considered essentials made to bring a little more joy to your daily rituals.</p>
+          <a class="button button-dark" href="#shop">Discover the collection <span aria-hidden="true">↗</span></a>
+          <div class="hero-proof"><span aria-hidden="true">✳</span> Thoughtfully chosen, made to last</div>
         </div>
         <div class="hero-art" aria-label="A collection of everyday goods">
           <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1200&q=85" alt="Warm, sunlit home interior">
-          <span class="hero-note">Good things<br>for everyday living</span>
+          <div class="hero-note"><span>THE SMALL HOURS EDIT</span><strong>Objects for<br>the art of living.</strong></div>
+          <span class="hero-index">01 — 04</span>
         </div>
       </section>
 
       <section class="shop-section wrap" id="shop">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">The collection</p>
-            <h2>Find your everyday favorite</h2>
+            <p class="eyebrow">A good place to start</p>
+            <h2>Shop the collection</h2>
           </div>
-          <p class="muted" id="product-count">A few good things, made to last.</p>
+          <p class="muted" id="product-count">Thoughtful finds for your everyday.</p>
         </div>
+        <div class="category-chips" id="category-chips" aria-label="Shop by category"></div>
         <form class="filters" id="product-filters">
           <label class="search-field">
             <span class="sr-only">Search products</span>
-            <input id="product-search" type="search" placeholder="Search the collection">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input id="product-search" type="search" placeholder="What are you looking for?">
           </label>
           <label>
             <span class="sr-only">Filter by category</span>
-            <select id="category-filter"><option value="">All categories</option></select>
+            <select id="category-filter"><option value="">All products</option></select>
           </label>
-          <button class="button button-outline" type="submit">Search</button>
+          <button class="button button-dark filter-submit" type="submit">Search</button>
         </form>
-        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <div class="product-grid" id="product-grid" aria-live="polite">
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div>
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div>
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div>
+          <div class="skeleton-card" aria-hidden="true"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div>
+        </div>
       </section>
       <section class="promise wrap">
-        <p class="eyebrow">A little more thoughtful</p>
-        <h2>Useful by design.<br><em>Loved for a long time.</em></h2>
-        <p>We believe the things we reach for every day should feel good, work hard, and be made to stay.</p>
+        <div class="promise-mark" aria-hidden="true">S.</div>
+        <div><p class="eyebrow">A little more thoughtful</p>
+          <h2>Less, but <em>better.</em></h2>
+          <p>We believe the things we reach for every day should feel good, work hard, and be made to stay.</p></div>
+        <a class="text-link" href="#shop">Find your favorite <span aria-hidden="true">↗</span></a>
       </section>
     </main>
     <div id="site-footer"></div>
