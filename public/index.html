@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Thoughtful everyday goods, chosen to make life a little better.">
+    <title>Small Hours — thoughtful things for every day</title>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+    <script src="/js/products.js" defer></script>
+  </head>
+  <body data-page="home">
+    <div id="site-header"></div>
+    <main>
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Little things, well chosen</p>
+          <h1>Make room for<br><em>the good stuff.</em></h1>
+          <p>Considered essentials for your home, your routine, and all the moments in between.</p>
+          <a class="button button-dark" href="#shop">Explore the collection <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-art" aria-label="A collection of everyday goods">
+          <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1200&q=85" alt="Warm, sunlit home interior">
+          <span class="hero-note">Good things<br>for everyday living</span>
+        </div>
+      </section>
+
+      <section class="shop-section wrap" id="shop">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The collection</p>
+            <h2>Find your everyday favorite</h2>
+          </div>
+          <p class="muted" id="product-count">A few good things, made to last.</p>
+        </div>
+        <form class="filters" id="product-filters">
+          <label class="search-field">
+            <span class="sr-only">Search products</span>
+            <input id="product-search" type="search" placeholder="Search the collection">
+          </label>
+          <label>
+            <span class="sr-only">Filter by category</span>
+            <select id="category-filter"><option value="">All categories</option></select>
+          </label>
+          <button class="button button-outline" type="submit">Search</button>
+        </form>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      </section>
+      <section class="promise wrap">
+        <p class="eyebrow">A little more thoughtful</p>
+        <h2>Useful by design.<br><em>Loved for a long time.</em></h2>
+        <p>We believe the things we reach for every day should feel good, work hard, and be made to stay.</p>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
