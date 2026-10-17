@@ -141,17 +141,30 @@
     const header = document.querySelector('#site-header');
     if (header) {
       header.innerHTML = `
-        <div class="announcement">A good day starts with the little things.</div>
+        <div class="announcement">Thoughtfully chosen goods for everyday living</div>
         <header class="site-header">
           <div class="nav-inner wrap">
             <a class="brand" href="/" aria-label="Small Hours home">small<span>hours</span><i>.</i></a>
+            <form class="header-search" id="header-search" role="search">
+              <span class="search-icon" aria-hidden="true"></span>
+              <label class="sr-only" for="header-search-input">Search products</label>
+              <input id="header-search-input" type="search" placeholder="Search products, categories…" autocomplete="off">
+            </form>
             <nav class="main-nav" aria-label="Main navigation">
               <a href="/#shop">Shop</a>
               <a class="account-link" href="/login.html">Log in</a>
               <a class="orders-link hidden" href="/orders.html">My orders</a>
               <button class="logout-link hidden" type="button">Log out</button>
-              <a class="bag-link" href="/cart.html">Bag <span class="bag-count" data-cart-count aria-label="0 items in your bag">0</span></a>
+              <a class="bag-link" href="/cart.html">
+                <svg class="bag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+                <span>Bag</span><span class="bag-count" data-cart-count aria-label="0 items in your bag">0</span>
+              </a>
             </nav>
+            <a class="mobile-bag-link" href="/cart.html" aria-label="Shopping bag">
+              <svg class="bag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+              <span class="bag-count" data-cart-count aria-label="0 items in your bag">0</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
           </div>
         </header>
       `;
@@ -177,6 +190,29 @@
         window.location.href = '/';
       } catch (error) {
         showToast(error.message, true);
+      }
+    });
+
+    const menuToggle = header?.querySelector('.menu-toggle');
+    menuToggle?.addEventListener('click', () => {
+      const siteHeader = header.querySelector('.site-header');
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      menuToggle.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
+      siteHeader.classList.toggle('menu-open', !expanded);
+    });
+
+    header?.querySelector('#header-search')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const query = header.querySelector('#header-search-input').value.trim();
+      if (!query) return;
+      if (window.location.pathname === '/' && document.querySelector('#product-filters')) {
+        const localSearch = document.querySelector('#product-search');
+        localSearch.value = query;
+        document.querySelector('#product-filters').requestSubmit();
+        document.querySelector('#shop')?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = `/?search=${encodeURIComponent(query)}#shop`;
       }
     });
   }
@@ -215,6 +251,14 @@
     return '/orders.html';
   }
 
+  document.addEventListener('error', (event) => {
+    const image = event.target;
+    if (image instanceof HTMLImageElement && !image.dataset.fallbackApplied) {
+      image.dataset.fallbackApplied = 'true';
+      image.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"%3E%3Crect width="640" height="640" fill="%23f0f2ef"/%3E%3Cpath d="M220 385h200l-20-155H240z" fill="%23dce3dd"/%3E%3Ccircle cx="320" cy="270" r="35" fill="%23cbd5cd"/%3E%3Ctext x="320" y="470" text-anchor="middle" fill="%23707873" font-family="Arial" font-size="24"%3ESmall Hours%3C/text%3E%3C/svg%3E';
+    }
+  }, true);
+
   async function initialize() {
     renderShell();
     try {
@@ -232,6 +276,11 @@
       document.querySelector('.logout-link')?.classList.remove('hidden');
     }
     await updateCartCount();
+    const loginNotice = sessionStorage.getItem('small-hours-login-notice');
+    if (loginNotice) {
+      sessionStorage.removeItem('small-hours-login-notice');
+      showToast(loginNotice);
+    }
     resolveReady();
     document.dispatchEvent(new CustomEvent('store:ready', { detail: { user: currentUser } }));
   }
