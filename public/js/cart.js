@@ -19,7 +19,7 @@
 
   function renderCart(items) {
     if (!items.length) {
-      cartContent.innerHTML = '<div class="empty-state"><h2>Your cart is empty.</h2><p>There is plenty to discover in the collection.</p><a class="button button-dark" href="/">Explore the shop</a></div>';
+      cartContent.innerHTML = '<div class="empty-state empty-cart"><div class="empty-cart-art" aria-hidden="true">🛍️</div><h2>Your cart is empty</h2><p>Looks like you have not found your next favorite yet.</p><a class="button button-cta" href="/#featured">Start shopping</a></div>';
       return;
     }
 
@@ -43,7 +43,7 @@
             </article>
           `).join('')}
         </div>
-        <div>${summary(items)}<a class="button button-dark button-full" href="/checkout.html">Continue to checkout</a></div>
+        <div>${summary(items)}<a class="button button-cta button-full" href="/checkout.html">Proceed to checkout</a></div>
       </div>
     `;
 
@@ -103,7 +103,7 @@
     try {
       const items = await getCart();
       if (!items.length) {
-        checkoutContent.innerHTML = '<div class="empty-state"><h2>Your bag is empty.</h2><a class="button button-dark" href="/">Explore the shop</a></div>';
+        checkoutContent.innerHTML = '<div class="empty-state empty-cart"><div class="empty-cart-art" aria-hidden="true">🛍️</div><h2>Your cart is empty</h2><a class="button button-cta" href="/#featured">Shop products</a></div>';
         return;
       }
       checkoutContent.innerHTML = `
@@ -114,7 +114,7 @@
             <label>Delivery address<textarea name="address" autocomplete="street-address" required minlength="8" maxlength="300" rows="3"></textarea></label>
             <label>Phone number<input name="phone" type="tel" autocomplete="tel" required minlength="7" maxlength="25"></label>
             <p class="form-message" id="checkout-message" role="alert"></p>
-            <button class="button button-dark" type="submit">Place order</button>
+            <button class="button button-cta" type="submit">Place order</button>
           </form>
           <div>
             ${summary(items)}
@@ -137,6 +137,7 @@
             method: 'POST',
             body: JSON.stringify(payload),
           });
+          sessionStorage.setItem('small-hours-login-notice', 'Order placed successfully. Thanks for shopping with ShopNova!');
           window.location.href = `/confirmation.html?id=${result.orderId}`;
         } catch (error) {
           message.textContent = error.message;
