@@ -6,12 +6,12 @@
     article.className = 'product-card';
     article.innerHTML = `
       <a class="product-image" href="/product.html?id=${product.id}">
-        <img src="${escapeHtml(product.imageUrl)}" alt="${escapeHtml(product.name)}" loading="lazy">
+        <img src="${escapeHtml(window.Store.imageFor(product))}" alt="${escapeHtml(product.name)}" loading="lazy">
         <span class="product-category">${escapeHtml(product.category)}</span>
       </a>
       <div class="product-card-info">
         <div><h3><a href="/product.html?id=${product.id}">${escapeHtml(product.name)}</a></h3><p>${money(product.priceCents)}</p></div>
-        <button class="add-button" type="button" aria-label="Add ${escapeHtml(product.name)} to bag" title="Quick add to bag" ${product.stock < 1 ? 'disabled' : ''}>${product.stock < 1 ? '−' : '+'}</button>
+        <button class="add-button" type="button" aria-label="Add ${escapeHtml(product.name)} to bag" title="Add ${escapeHtml(product.name)} to bag" ${product.stock < 1 ? 'disabled' : ''}>${product.stock < 1 ? 'Out of stock' : 'Add to bag'}</button>
       </div>
     `;
     article.querySelector('.add-button').addEventListener('click', async () => {
@@ -138,7 +138,7 @@
       document.querySelector('#breadcrumb-name').textContent = product.name;
       container.innerHTML = `
         <section class="product-detail">
-              <div class="detail-image"><img src="${escapeHtml(product.imageUrl)}" alt="${escapeHtml(product.name)}"></div>
+              <div class="detail-image"><img src="${escapeHtml(window.Store.imageFor(product))}" alt="${escapeHtml(product.name)}"></div>
           <div class="detail-copy">
             <p class="eyebrow">${escapeHtml(product.category)}</p>
             <h1>${escapeHtml(product.name)}</h1>
