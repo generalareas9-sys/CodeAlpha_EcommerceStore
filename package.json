@@ -1,0 +1,17 @@
+{
+  "name": "codealpha-ecommerce",
+  "version": "1.0.0",
+  "description": "A simple full-stack e-commerce store for the CodeAlpha internship.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/db/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
