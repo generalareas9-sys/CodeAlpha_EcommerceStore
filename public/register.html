@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create an account — Small Hours</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+  </head>
+  <body data-page="register">
+    <div id="site-header"></div>
+    <main class="auth-layout wrap">
+      <section class="auth-card">
+        <p class="eyebrow">Make yourself at home</p><h1>Join the good things.</h1>
+        <p class="muted">Create an account to save your bag and see your orders.</p>
+        <form id="register-form" class="form-stack">
+          <label>Your name<input type="text" name="name" autocomplete="name" required minlength="2" maxlength="80"></label>
+          <label>Email address<input type="email" name="email" autocomplete="email" required maxlength="254"></label>
+          <label>Password<input type="password" name="password" autocomplete="new-password" required minlength="8" maxlength="72"><small>Use at least 8 characters.</small></label>
+          <p class="form-message" id="form-message" role="alert"></p>
+          <button class="button button-dark" type="submit">Create account</button>
+        </form>
+        <p class="form-switch">Already have an account? <a href="/login.html">Log in</a></p>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
